@@ -47,6 +47,9 @@ function setupRoutes(app, passport,db) {
       })
       .catch(error => console.error(error))
   });
+
+
+
   // Survey ============================
   app.get('/survey', isLoggedIn, function(req, res) {
     res.render('demographicsurvey.ejs', {
@@ -55,6 +58,7 @@ function setupRoutes(app, passport,db) {
   });
 
   app.post('/surveyQ', isLoggedIn, function(req, res) {
+    console.log('hello');
     console.log(req.body);
 
     db.collection('survey').save({
@@ -74,6 +78,22 @@ function setupRoutes(app, passport,db) {
     })
 res.redirect('/');
   });
+
+// adminStats page
+ app.get('/adminStats', isLoggedIn, isAdmin,  function(req, res){
+// find everything put it into an array and give me the result... result will hold all of my documents
+  db.collection('survey').find({}).toArray((err,result)=>{
+    const arr = [ ]
+    // item represents each document that holds all the answers
+    result.forEach((item, i) => {
+      if (parseInt(item.age) >= req.body.ageMin && parseInt(item.age) <= req.body.ageMax)
+        arr.push(item)
+
+    });
+    res.render('stats.ejs', {result: arr});
+  })
+
+});
 
 // homepage
 
@@ -130,6 +150,14 @@ res.redirect('/');
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
+    return next();
+  }
+
+  res.redirect('/login');
+}
+//admin page 
+function isAdmin(req, res, next) {
+  if (req.user.local.isAdmin){
     return next();
   }
 
