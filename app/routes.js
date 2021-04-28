@@ -1,19 +1,23 @@
 const User = require('./models/user')
 
 module.exports = setupRoutes;
-
-function setupRoutes(app, passport,db) {
+var ObjectId = require('mongodb').ObjectId
+function setupRoutes(app, passport, db) {
 
   // normal routes ===============================================================
 
   // show the home page (will also have our login links)
   app.get('/', isLoggedIn, function(req, res) {
-    res.render('main.ejs', {
-      user: req.user
-    });
+    res.render('index.ejs', {user: req.user.local});
   });
 
+  // journal entries
   app.get('/feelings', isLoggedIn, async function(req, res) {
+    const moodData = req.user.moodData
+    res.render('main.ejs',{user:req.user.local})
+  })
+
+  app.get('/feelingsData', isLoggedIn, async function(req, res) {
     const moodData = req.user.moodData
     res.json(moodData)
   })
@@ -29,7 +33,7 @@ function setupRoutes(app, passport,db) {
       // res.json({ user: result })
 
       .then(result => {
-        res.redirect('/')
+        res.redirect('/feelings')
       })
       .catch(error => console.error(error))
   });
@@ -43,7 +47,7 @@ function setupRoutes(app, passport,db) {
       // res.json({ user: result })
 
       .then(result => {
-        res.redirect('/')
+        res.redirect('/feelings')
       })
       .catch(error => console.error(error))
   });
@@ -62,6 +66,7 @@ function setupRoutes(app, passport,db) {
     console.log(req.body);
 
     db.collection('survey').save({
+      userInformation: req.user._id,
       age: req.body.age,
       race: req.body.race,
       q1: req.body.q1,
@@ -74,31 +79,72 @@ function setupRoutes(app, passport,db) {
       q8: req.body.q8,
       q9: req.body.q9,
       q10: req.body.q10,
-      comment: req.body.comment
+      comment: req.body.comment,
+      time: new Date(Date.now())
     })
-res.redirect('/');
+    res.redirect('/home');
   });
 
-// adminStats page
- app.get('/adminStats', isLoggedIn, isAdmin,  function(req, res){
-// find everything put it into an array and give me the result... result will hold all of my documents
-  db.collection('survey').find({}).toArray((err,result)=>{
-    const arr = [ ]
-    // item represents each document that holds all the answers
-    result.forEach((item, i) => {
-      if (parseInt(item.age) >= req.body.ageMin && parseInt(item.age) <= req.body.ageMax)
-        arr.push(item)
+  // // adminStats page
+  //  app.get('/stats', isLoggedIn, isAdmin,  function(req, res){
+  // // find everything put it into an array and give me the result... result will hold all of my documents
+  //   db.collection('survey').find({}).toArray((err,result)=>{
+  //     const arr = [ ]
+  //     // item represents each document that holds all the answers
+  //     result.forEach((item, i) => {
+  //       if (parseInt(item.age) >= req.body.ageMin && parseInt(item.age) <= req.body.ageMax)
+  //         arr.push(item)
+  //
+  //     });
+  //     res.render('stats.ejs', {createStats: result});
+  //   })
+  //
+  // });
 
-    });
-    res.render('stats.ejs', {result: arr});
+  app.get('/stats', isLoggedIn, function(req, res) {
+    // console.log();
+    db.collection('survey').find().sort({
+      _id: -1
+    }).toArray((err, result) => {
+      if (err) return console.log(err)
+      res.render('stats.ejs', {
+        createStats: result
+      });
+    })
+  })
+  // homepage
+
+  app.get('/home', isLoggedIn, async function(req, res) {
+    res.render('index.ejs',{user:req.user.local});
   })
 
-});
-
-// homepage
 
 
-// meditation
+  // meditation
+
+
+
+// aboutme
+app.get('/aboutme', isLoggedIn, async function(req, res) {
+  res.render('aboutme.ejs',{user:req.user.local});
+})
+
+
+// admin userid journal links
+
+// '/userIdJournals/:userid' render a dynamic url it does not matter what userid you click on
+app.get('/userIdJournals/:userid', isLoggedIn, async function(req, res) {
+  const userid = req.params.userid
+  db.collection('users').find({_id:ObjectId(userid)}).toArray((err,result)=>{
+ if (err) return console.log(err);
+console.log(result[0].moodData, "this is the result");
+console.log(result);
+     res.render('viewjournals.ejs', {
+       user: req.user,
+       journalInfo: result[0].moodData});
+
+   })
+})
 
 
 
@@ -140,7 +186,7 @@ res.redirect('/');
 
   // process the signup form
   app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/', // redirect to the secure profile section
+    successRedirect: '/survey', // redirect to the secure profile section
     failureRedirect: '/signup', // redirect back to the signup page if there is an error
     failureFlash: true // allow flash messages
   }));
@@ -155,9 +201,11 @@ function isLoggedIn(req, res, next) {
 
   res.redirect('/login');
 }
-//admin page 
+//admin page
+
+
 function isAdmin(req, res, next) {
-  if (req.user.local.isAdmin){
+  if (req.user.local.isAdmin) {
     return next();
   }
 

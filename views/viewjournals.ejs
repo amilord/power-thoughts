@@ -13,8 +13,8 @@
 	<title>Power Thoughts</title>
 
 	<!-- external CSS link -->
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -24,21 +24,6 @@
 		<div class="content">
 			<h2 class="contentTitle">Power Thoughts a Mindfulness Approach</h2>
 
-
-
-			<label for="feelsMessage"></label>
-			<textarea name="feelsMessage" form="feelsForm" placeholder="Let your thoughts and your fingers flow freely"></textarea>
-
-			<form id="feelsForm" action="/user" method="post">
-				<div class="dateHolder">
-					<label for="date">Date:</label>
-					<input class="datePicker" type="date" name="date" value="">
-				</div>
-
-				<button type="submit" name="button">Submit</button>
-
-			</form>
-
 			<h3 class="prevRecordings hideTable">Previous Recordings</h3>
 
 			<div id="tableWrapper" class="tableWrapper">
@@ -46,15 +31,19 @@
 					<table class="moodTable" style="width:100%">
 						<thead>
 							<tr class="headtr">
+								<th>Client's Journal Entries</th>
 								<th>Date</th>
-							
-								<th>Journal Entry</th>
-
-								<th>Message</th>
 							</tr>
 						</thead>
 						<tbody class="tableBody">
-
+							<% if (typeof journalInfo == 'undefined'){%>
+									<%} else {%>
+							<% for(var i=0; i < journalInfo.length; i++){%>
+							<tr>
+								<td> <%= journalInfo[i] %></td>
+							</tr>
+							<% }%>
+							<% }%>
 						</tbody>
 					</table>
 				</div>
@@ -68,9 +57,9 @@
 	<footer>
 		<a href="/logout"><button type="button" name="button" act>Logout</button></a>
 
-		<a href="/resetAll"><button class="resetButton" type="button" name="button" act>Clear your Journal Entries</button></a>
 
-		<% if (user.isAdmin){%> <a href="/stats"><button class="Button" type="button" name="button" act>Admin Page</button></a><% }%>
+
+		<% if (user.local.isAdmin){%> <a href="/stats"><button class="Button" type="button" name="button" act>Admin Page</button></a><% }%>
 		<a href="/home"><button class="Button" type="button" name="button" act>Home</button></a>
 	</footer>
 	<script type="text/javascript" src="js/main.js"></script>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <span>
+    <a href="/logout"><button type="button" name="button" act>Logout</button></a>
+    <a href="/survey"><button class="Button" type="button" name="button" act>Take Power Thoughts Survey</button></a>
+    <a href="/feelings"><button type="button" name="button" act>Journal Entries</button></a>
+    <a href="/meditation"><button class="Button" type="button" name="button" act>Meditation</button></a>
+    <% if (user.isAdmin){%> <a href="/stats"><button class="Button" type="button" name="button" act>Admin Page</button></a><% }%>
+    <a href="/aboutme"><button class="Button" type="button" name="button" act>About Me</button></a>
+  </span>
+</body>
+
+</html>

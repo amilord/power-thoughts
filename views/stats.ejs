@@ -1,1 +1,79 @@
-where my stats will pop up for my admin page
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Your description goes here">
+  <meta name="keywords" content="one, two, three">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://kit.fontawesome.com/aa1a2a1c33.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+  <title>Power Thoughts Stats</title>
+
+  <!-- external CSS link -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <!-- <p><%= createStats[0].age %></p> -->
+
+  <div id="adminStats" class="adminStats">
+    <div class="scrollAssist">
+      <table class="stats" style="width:100%">
+        <thead>
+          <tr class="headtr">
+            <th>user </th>
+            <th>age </th>
+            <th>race </th>
+            <th>q1 </th>
+            <th>q2 </th>
+            <th>q3 </th>
+            <th>q4 </th>
+            <th>q5 </th>
+            <th>q6 </th>
+            <th>q7 </th>
+            <th>q8 </th>
+            <th>q9 </th>
+            <th>q10 </th>
+            <th>comment</th>
+            <th>date</th>
+          </tr>
+        </thead>
+        <% for(var i=0; i < createStats.length; i++){%>
+        <tr class="tStats">
+          <td><a href="userIdJournals/<%= createStats[i].userInformation %>"><%= createStats[i].userInformation %></a></td>
+          <td><%= createStats[i].age %></td>
+          <td><%= createStats[i].race %></td>
+          <td><%= createStats[i].q1 %></td>
+          <td><%= createStats[i].q2 %></td>
+          <td><%= createStats[i].q3 %></td>
+          <td><%= createStats[i].q4 %></td>
+          <td><%= createStats[i].q5 %></td>
+          <td><%= createStats[i].q6 %></td>
+          <td><%= createStats[i].q7 %></td>
+          <td><%= createStats[i].q8 %></td>
+          <td><%= createStats[i].q9 %></td>
+          <td><%= createStats[i].q10 %></td>
+          <td><%= createStats[i].comment %></td>
+          <td><%= createStats[i].time %></td>
+        </tr>
+        <%}%>
+        <tbody class="tableBody">
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+<footer>
+  <a href="/logout"><button type="button" name="button" act>Logout</button></a>
+
+
+<a href="/home"><button class="Button" type="button" name="button" act>Home</button></a>
+</footer>
+  </body>
+</html>

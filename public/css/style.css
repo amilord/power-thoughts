@@ -296,7 +296,7 @@ body{
   display: none;
 }
 #tableWrapper{
-  display: none;
+  border: 1px solid black;
 }
 @keyframes gradient {
 	0% {
