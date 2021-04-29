@@ -1,79 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 
 <head>
-	<meta charset="utf-8">
+	<title>Journal</title>
+	<meta charset="utf-8" />
 	<meta name="description" content="Your description goes here">
 	<meta name="keywords" content="one, two, three">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<script src="https://kit.fontawesome.com/aa1a2a1c33.js" crossorigin="anonymous"></script>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-
-	<title>Power Thoughts</title>
-
-	<!-- external CSS link -->
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="../assets/css/main.css" />
 </head>
 
-<body>
+<body class="is-preload">
+	<div id="page-wrapper">
 
-	<main>
+		<!-- Header -->
+		<header id="header">
 
-		<div class="content">
-			<h2 class="contentTitle">Power Thoughts a Mindfulness Approach</h2>
+		</header>
+
+		<!-- Main -->
+		<section id="main" class="container">
+			<header>
+				<h2>Journal Entries</h2>
+				<p>We deserve to feel good.</p>
+			</header>
+			<div class="box">
+
+
+				<main>
+
+					<div class="content">
 
 
 
-			<label for="feelsMessage"></label>
-			<textarea name="feelsMessage" form="feelsForm" placeholder="Let your thoughts and your fingers flow freely"></textarea>
 
-			<form id="feelsForm" action="/user" method="post">
-				<div class="dateHolder">
-					<label for="date">Date:</label>
-					<input class="datePicker" type="date" name="date" value="">
-				</div>
+						<label for="feelsMessage"></label>
+						<textarea name="feelsMessage" form="feelsForm" placeholder="Let your thoughts and your fingers flow freely"></textarea>
 
-				<button type="submit" name="button">Submit</button>
+						<form id="feelsForm" action="/user" method="post">
+							<div class="dateHolder">
+								<label for="date">Date:</label>
+								<input class="datePicker" type="date" name="date" value="">
+							</div>
 
-			</form>
+							<button type="submit" class="button alt" name="button">Submit</button>
 
-			<h3 class="prevRecordings hideTable">Previous Recordings</h3>
+						</form>
 
-			<div id="tableWrapper" class="tableWrapper">
-				<div class="scrollAssist">
-					<table class="moodTable" style="width:100%">
-						<thead>
-							<tr class="headtr">
-								<th>Date</th>
-							
-								<th>Journal Entry</th>
+						<h3 class="prevRecordings hideTable">Previous Recordings</h3>
 
-								<th>Message</th>
-							</tr>
-						</thead>
-						<tbody class="tableBody">
+						<div id="tableWrapper" class="tableWrapper">
+							<div class="scrollAssist">
+								<table class="moodTable" style="width:100%">
+									<thead>
+										<tr class="headtr">
+											<th>Date</th>
 
-						</tbody>
-					</table>
-				</div>
+											<th>Journal Entry</th>
+
+											<th>Message</th>
+										</tr>
+									</thead>
+									<tbody class="tableBody">
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+					</div>
+
+
+
+				</main>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<ul class="icons">
+						<a href="/logout"><button type="button" name="button" act>Logout</button></a>
+
+						<a href="/resetAll"><button class="resetButton" type="button" name="button" act>Clear your Journal Entries</button></a>
+
+						<% if (user.isAdmin){%> <a href="/stats"><button class="Button" type="button" name="button" act>Admin Page</button></a><% }%>
+						<a href="/home"><button class="Button" type="button" name="button" act>Home</button></a>
+					</footer>
+					</ul>
+				</footer>
+
 			</div>
 
-		</div>
-
-
-
-	</main>
-	<footer>
-		<a href="/logout"><button type="button" name="button" act>Logout</button></a>
-
-		<a href="/resetAll"><button class="resetButton" type="button" name="button" act>Clear your Journal Entries</button></a>
-
-		<% if (user.isAdmin){%> <a href="/stats"><button class="Button" type="button" name="button" act>Admin Page</button></a><% }%>
-		<a href="/home"><button class="Button" type="button" name="button" act>Home</button></a>
-	</footer>
+			<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
+
+</script>
 </body>
 
 </html>

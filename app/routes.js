@@ -29,12 +29,9 @@ app.get('/contact', function(req, res) {
   });
 });
 
-  // login page to sign in as a returning user
-  app.get('/login', isLoggedIn, function(req, res) {
-    res.render('login.ejs', {
-      user: req.user.local
-    });
-  });
+
+
+
   // journal entries
   app.get('/feelings', isLoggedIn, async function(req, res) {
     const moodData = req.user.moodData
@@ -207,10 +204,16 @@ app.get('/contact', function(req, res) {
       message: req.flash('loginMessage')
     });
   });
-
+  // // login page to sign in as a returning user
+  // app.get('/login', function(req, res) {
+  //   res.render('login.ejs', {
+  //     // user: req.user.local
+  //     message: req.flash('signupMessage'),
+  //   });
+  // });
   // process the login form
   app.post('/login', passport.authenticate('local-login', {
-    successRedirect: '/', // redirect to the secure profile section
+    successRedirect: '/home', // redirect to the secure profile section
     failureRedirect: '/login', // redirect back to the signup page if there is an error
     failureFlash: true // allow flash messages
   }));

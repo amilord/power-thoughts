@@ -78,7 +78,7 @@ h3{
   padding-top: 2%;
   text-align:  center;
   font-size: 2rem;
-  color: white;
+  color: rgba(195, 150, 123);
   margin: 0;
   margin-bottom: 2%;
 }
@@ -86,7 +86,7 @@ h3{
   /* border: 1px solid black; */
   flex: 2;
   width: 80%;
-  background: #72aee6;
+  background: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -145,7 +145,7 @@ button{
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
   border: none;
-  color: white;
+  color: #8D5524;
   border-radius: 5px;
 }
 button:hover{
@@ -186,7 +186,7 @@ button:hover{
   height: 10%;
 }
 table{
-  background-color: rgba(255, 255, 255, 0.55);
+  background-color: rgba(141, 85, 36);
   margin-top: 2%;
 }
 table thead th{
@@ -213,6 +213,10 @@ footer {
  display: flex;
  align-items: center;
  justify-content: flex-start;
+ background: linear-gradient(-45deg, #C3967B, #D0A286, #EBC7AF, #FFDBAC);
+ background-size: 400% 400%;
+ animation: gradient 4s ease infinite;
+
 }
 
 footer a{
@@ -241,15 +245,15 @@ header {
 
 .load-quote {
   color: #fff;
-  text-shadow: 1px 1px 1px rgba(50, 50, 50, 0.3);
+  text-shadow: 1px 1px 1px rgba(198, 134, 66);
   width: 12em;
   max-height: 75px;
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 15px 0;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(224, 172, 105);
   border-radius: 4px;
-  border: 2px solid rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 219, 1723);
   transition: 0.5s;
 }
 
@@ -396,10 +400,11 @@ PowerThoughts Survey Style
 /**************************************/
 
 body{
-  text-align:center;
-  font-family:sans-serif;
-  background-image:linear-gradient(to bottom right, #33adff , #7300e6);
-  color:white;
+
+    /* background-color: beige */
+    background: linear-gradient(-45deg, #C3967B, #D0A286, #EBC7AF, #FFDBAC);
+    background-size: 400% 400%;
+    animation: gradient 6s ease infinite;
 
 }
 #title{
@@ -416,7 +421,7 @@ body{
   margin:auto;
   border-radius:10px;
   text-align:left;
-  background-color:rgba(0,0,0,0.6);
+  background-color:rgba(195, 150, 123);
   font-size:20px;
   color:white;
 
@@ -457,7 +462,7 @@ body{
   border:none;
   margin-top:3%;
   color:white;
-  background-color:green;
+  background-color:#8D5524;
 
 }
 /******************************************

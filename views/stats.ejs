@@ -1,3 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Survey</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1>Admin Survey Data Page</h1>
+			<nav id="nav">
+				<ul>
+					<li><a href="/home">Home</a></li>
+
+					<li><a href="/signup" class="button">Sign Up</a></li>
+						<li><a href="/login" class="button">Log In</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<!-- Main -->
+    <body>
+      <!-- <p><%= createStats[0].age %></p> -->
+
+      <div id="adminStats" class="adminStats">
+        <div class="scrollAssist">
+          <table class="stats" style="width:100%">
+            <thead>
+              <tr class="headtr">
+                <th>user </th>
+                <th>age </th>
+                <th>race </th>
+                <th>q1 </th>
+                <th>q2 </th>
+                <th>q3 </th>
+                <th>q4 </th>
+                <th>q5 </th>
+                <th>q6 </th>
+                <th>q7 </th>
+                <th>q8 </th>
+                <th>q9 </th>
+                <th>q10 </th>
+                <th>comment</th>
+                <th>date</th>
+              </tr>
+            </thead>
+            <% for(var i=0; i < createStats.length; i++){%>
+            <tr class="tStats">
+              <td><a href="userIdJournals/<%= createStats[i].userInformation %>"><%= createStats[i].userInformation %></a></td>
+              <td><%= createStats[i].age %></td>
+              <td><%= createStats[i].race %></td>
+              <td><%= createStats[i].q1 %></td>
+              <td><%= createStats[i].q2 %></td>
+              <td><%= createStats[i].q3 %></td>
+              <td><%= createStats[i].q4 %></td>
+              <td><%= createStats[i].q5 %></td>
+              <td><%= createStats[i].q6 %></td>
+              <td><%= createStats[i].q7 %></td>
+              <td><%= createStats[i].q8 %></td>
+              <td><%= createStats[i].q9 %></td>
+              <td><%= createStats[i].q10 %></td>
+              <td><%= createStats[i].comment %></td>
+              <td><%= createStats[i].time %></td>
+            </tr>
+            <%}%>
+            <tbody class="tableBody">
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+    <footer>
+      <a href="/"><button type="button" name="button" act>Logout</button></a>
+
+
+    <a href="/home"><button class="Button" type="button" name="button" act>Home</button></a>
+    </footer>
+
+			</div>
+
+			<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -13,67 +114,9 @@
   <title>Power Thoughts Stats</title>
 
   <!-- external CSS link -->
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/style.css">
+
 </head>
 
-<body>
-  <!-- <p><%= createStats[0].age %></p> -->
-<h1>Admin Survey Data Page</h1>
-  <div id="adminStats" class="adminStats">
-    <div class="scrollAssist">
-      <table class="stats" style="width:100%">
-        <thead>
-          <tr class="headtr">
-            <th>user </th>
-            <th>age </th>
-            <th>race </th>
-            <th>q1 </th>
-            <th>q2 </th>
-            <th>q3 </th>
-            <th>q4 </th>
-            <th>q5 </th>
-            <th>q6 </th>
-            <th>q7 </th>
-            <th>q8 </th>
-            <th>q9 </th>
-            <th>q10 </th>
-            <th>comment</th>
-            <th>date</th>
-          </tr>
-        </thead>
-        <% for(var i=0; i < createStats.length; i++){%>
-        <tr class="tStats">
-          <td><a href="userIdJournals/<%= createStats[i].userInformation %>"><%= createStats[i].userInformation %></a></td>
-          <td><%= createStats[i].age %></td>
-          <td><%= createStats[i].race %></td>
-          <td><%= createStats[i].q1 %></td>
-          <td><%= createStats[i].q2 %></td>
-          <td><%= createStats[i].q3 %></td>
-          <td><%= createStats[i].q4 %></td>
-          <td><%= createStats[i].q5 %></td>
-          <td><%= createStats[i].q6 %></td>
-          <td><%= createStats[i].q7 %></td>
-          <td><%= createStats[i].q8 %></td>
-          <td><%= createStats[i].q9 %></td>
-          <td><%= createStats[i].q10 %></td>
-          <td><%= createStats[i].comment %></td>
-          <td><%= createStats[i].time %></td>
-        </tr>
-        <%}%>
-        <tbody class="tableBody">
 
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-</div>
-<footer>
-  <a href="/logout"><button type="button" name="button" act>Logout</button></a>
-
-
-<a href="/home"><button class="Button" type="button" name="button" act>Home</button></a>
-</footer>
   </body>
 </html>

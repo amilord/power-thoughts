@@ -1,21 +1,101 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<!DOCTYPE HTML>
+
+<html>
 
 <head>
-  <meta charset="utf-8">
-  <title></title>
+  <title>Directory</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
 </head>
 
-<body>
-  <span>
-    <a href="/logout"><button type="button" name="button" act>Logout</button></a>
-    <a href="/survey"><button class="Button" type="button" name="button" act>Take Power Thoughts Survey</button></a>
-    <a href="/feelings"><button type="button" name="button" act>Journal Entries</button></a>
-    <a href="/meditation"><button class="Button" type="button" name="button" act>Meditation</button></a>
-    <a href="/affirmations"><button class="Button" type="button" name="button" act>Affirmations</button></a>
-    <% if (user.isAdmin){%> <a href="/stats"><button class="Button" type="button" name="button" act>Admin Page</button></a><% }%>
-    <a href="/resources"><button class="Button" type="button" name="button" act>Mental Health Resources</button></a>
-  </span>
+<body class="landing is-preload">
+  <div id="page-wrapper">
+
+
+
+    <!-- Banner -->
+    <!-- <section id="banner2">
+
+				</section> -->
+
+    <!-- Main -->
+    <section class="box special">
+      <header class="major">
+        <h2>Directory
+          <br />
+        </h2>
+        <p>Helping people manage their thoughts and feelings.</p>
+      </header>
+    </section>
+    <!--
+					<section class="box special features">
+						<div class="features-row">
+<p>I am willing to release old, negative beliefs. They are only thoughts that stand in my way. My new thoughts are postive and fulfilling.</p>
+						</div>
+					</section> -->
+
+    <div class="row">
+      <div class="col-6 col-12-narrower">
+
+        <section class="box special">
+
+          <a href="/feelings" class="button alt">Journal</a>
+
+        </section>
+
+      </div>
+      <div class="col-6 col-12-narrower">
+
+        <section class="box special">
+
+          <a href="/affirmations" class="button alt">Affirmations</a>
+
+        </section>
+
+      </div>
+      <div class="col-6 col-12-narrower">
+
+        <section class="box special">
+
+          <a href="/meditation" class="button alt">Meditation</a>
+
+        </section>
+
+      </div>
+      <div class="col-6 col-12-narrower">
+
+        <section class="box special">
+
+          <a href="/survey" class="button alt">Power Thoughts Survey</a>
+
+        </section>
+
+      </div>
+      <div class="col-6 col-12-narrower">
+
+        <section class="box special">
+
+          <a href="/resources" class="button alt">Mental Health Resources</a>
+
+        </section>
+
+      </div>
+      <div class="col-6 col-12-narrower">
+
+        <section class="box special">
+
+          <% if (user.isAdmin){%> <a href="stats" class="button alt">Admin Page</a> <% }%>
+          <a href="/" class="button alt">Log Out</a>
+        </section>
+
+      </div>
+
+
+
+      </section>
+
+
 </body>
 
 </html>
