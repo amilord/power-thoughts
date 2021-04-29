@@ -2,19 +2,45 @@ const User = require('./models/user')
 
 module.exports = setupRoutes;
 var ObjectId = require('mongodb').ObjectId
+
 function setupRoutes(app, passport, db) {
 
   // normal routes ===============================================================
 
-  // show the home page (will also have our login links)
-  app.get('/', isLoggedIn, function(req, res) {
-    res.render('index.ejs', {user: req.user.local});
+  // show the home page which is the landing page (will also have our login links)
+  app.get('/', function(req, res) {
+      res.render('landingpage.ejs', {
+        user: req.user
+      });
+    });
+
+
+  // about us page linked to the landing Page
+  app.get('/aboutus', function(req, res) {
+    res.render('aboutus.ejs', {
+      user: req.user
+    });
   });
 
+// contact us page
+app.get('/contact', function(req, res) {
+  res.render('contact.ejs', {
+    user: req.user
+  });
+});
+
+  // login page to sign in as a returning user
+  app.get('/login', isLoggedIn, function(req, res) {
+    res.render('login.ejs', {
+      user: req.user.local
+    });
+  });
   // journal entries
   app.get('/feelings', isLoggedIn, async function(req, res) {
     const moodData = req.user.moodData
-    res.render('main.ejs',{user:req.user.local})
+    res.render('main.ejs', {
+      user: req.user.local
+    })
   })
 
   app.get('/feelingsData', isLoggedIn, async function(req, res) {
@@ -115,7 +141,9 @@ function setupRoutes(app, passport, db) {
   // homepage
 
   app.get('/home', isLoggedIn, async function(req, res) {
-    res.render('index.ejs',{user:req.user.local});
+    res.render('index.ejs', {
+      user: req.user.local
+    });
   })
 
 
@@ -123,28 +151,39 @@ function setupRoutes(app, passport, db) {
   // meditation
 
 
+  // affirmations
+  app.get('/affirmations', isLoggedIn, async function(req, res) {
+    res.render('affirmations.ejs', {
+      user: req.user.local
+    });
+  })
 
-// aboutme
-app.get('/aboutme', isLoggedIn, async function(req, res) {
-  res.render('aboutme.ejs',{user:req.user.local});
-})
+
+  // mental health resources
+  app.get('/resources', isLoggedIn, async function(req, res) {
+    res.render('resources.ejs', {
+      user: req.user.local
+    });
+  })
 
 
-// admin userid journal links
+  // admin userid journal links
+  // '/userIdJournals/:userid' render a dynamic url it does not matter what userid you click on
+  app.get('/userIdJournals/:userid', isLoggedIn, async function(req, res) {
+    const userid = req.params.userid
+    db.collection('users').find({
+      _id: ObjectId(userid)
+    }).toArray((err, result) => {
+      if (err) return console.log(err);
+      console.log(result[0].moodData, "this is the result");
+      console.log(result);
+      res.render('viewjournals.ejs', {
+        user: req.user,
+        journalInfo: result[0].moodData
+      });
 
-// '/userIdJournals/:userid' render a dynamic url it does not matter what userid you click on
-app.get('/userIdJournals/:userid', isLoggedIn, async function(req, res) {
-  const userid = req.params.userid
-  db.collection('users').find({_id:ObjectId(userid)}).toArray((err,result)=>{
- if (err) return console.log(err);
-console.log(result[0].moodData, "this is the result");
-console.log(result);
-     res.render('viewjournals.ejs', {
-       user: req.user,
-       journalInfo: result[0].moodData});
-
-   })
-})
+    })
+  })
 
 
 
